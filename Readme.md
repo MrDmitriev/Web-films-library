@@ -1,7 +1,7 @@
 # Личный проект «Что посмотреть» [![Build status][travis-image]][travis-url]
 
 * Студент: [Sergey Dmitriev](https://up.htmlacademy.ru/react/2/user/768817).
-* Наставник: `Неизвестно`.
+* Наставник: ``.
 
 ---
 
