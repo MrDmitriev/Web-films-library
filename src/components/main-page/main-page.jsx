@@ -2,11 +2,10 @@ import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
-import {GenreList} from '../genre-list/genre-list.jsx';
+import GenreList from '../genre-list/genre-list.jsx';
 import MoviesList from '../movies-list/movies-list.jsx';
-import {ShowMoreButton} from '../show-more/show-more.jsx';
 import {Logo} from '../logo/logo.jsx';
-import {ActionCreator} from '../../reducers/data.js';
+import {ActionCreator} from '../../reducers/index.js';
 import PromoCard from '../promo-card/promo-card.jsx';
 
 export class MainPage extends PureComponent {

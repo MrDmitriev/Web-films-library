@@ -8,14 +8,17 @@ import {ShowMoreButton} from '../show-more/show-more.jsx';
 
 export const MoviesList = (props) => {
   const {movies} = props;
-  const [showMore, toggleShow] = useState(false);
-  const movieList = showMore ? movies : slice(0, 20, movies);
+  const [currentRaw, incrementRaw] = useState(1);
+  const load = currentRaw * 4;
+  const movieList = slice(0, load, movies);
+  const isHidden = movieList.length >= movies.length;
+
   return (
       <>
         <div className="catalog__movies-list">
           {movieList.map((item, i) => <MoviesItem key = {i} item={item} />)}
         </div>
-        {!showMore && <ShowMoreButton onClick={() => toggleShow(!showMore)} />}
+        {!isHidden && <ShowMoreButton onClick={() => incrementRaw(currentRaw + 1)} />}
       </>
   );
 };
