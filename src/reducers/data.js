@@ -1,11 +1,13 @@
 /* eslint-disable camelcase */
 const initialState = {
+  isFetching: false,
   movies: [],
   moviePromo: {}
 };
 
 const setMovies = (movies) => ({type: `SET_MOVIES`, payload: movies});
 const setMoviePromo = (movie) => ({type: `SET_MOVIE_PROMO`, payload: movie});
+const setIsFetching = (isfetching) => ({type: `SET_IS_FETCHING`, payload: isfetching});
 
 const loadMovies = () => (dispatch, getState, api) => {
   return api.get(`/films`)
@@ -34,6 +36,12 @@ const data = (state = initialState, action) => {
         ...state,
         moviePromo: action.payload
       };
+
+    case `SET_IS_FETCHING`:
+      return {
+        ...state,
+        isFetching: action.payload
+      };
   }
 
   return state;
@@ -45,5 +53,6 @@ export const ActionCreator = {
   setMovies,
   setMoviePromo,
   loadMovies,
-  loadMoviePromo
+  loadMoviePromo,
+  setIsFetching
 };

@@ -53,6 +53,7 @@ export class PromoCard extends PureComponent {
                   </svg>
                   <span>My list</span>
                 </button>
+                <div className="lds-dual-ring"/>
               </div>
             </div>
           </div>

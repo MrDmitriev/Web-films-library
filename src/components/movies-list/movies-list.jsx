@@ -1,34 +1,42 @@
 import React, {useState} from 'react';
-import {slice} from 'ramda';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {getMovies} from '../../selectors/data.js';
 import {MoviesItem} from '../movies-item/movies-item.jsx';
 import {ShowMoreButton} from '../show-more/show-more.jsx';
+import {filterMoviesByGenre, filterMoviesByPortion} from '../../utils/utils.js';
+import {getGenre} from '../../selectors/settings.js';
 
 export const MoviesList = (props) => {
-  const {movies} = props;
+  const {movies, genre} = props;
+  const moviesByGenre = filterMoviesByGenre(genre, movies);
   const [currentRaw, incrementRaw] = useState(1);
-  const load = currentRaw * 4;
-  const movieList = slice(0, load, movies);
-  const isHidden = movieList.length >= movies.length;
+  const portion = currentRaw * 4;
+  const moviesList = filterMoviesByPortion(portion, moviesByGenre);
+  const isHidden = moviesList.length >= moviesByGenre.length;
+
+  const handleShowMoreClick = () => {
+    return incrementRaw(currentRaw + 1);
+  };
 
   return (
       <>
         <div className="catalog__movies-list">
-          {movieList.map((item, i) => <MoviesItem key = {i} item={item} />)}
+          {moviesList.map((item, i) => <MoviesItem key = {i} item={item} />)}
         </div>
-        {!isHidden && <ShowMoreButton onClick={() => incrementRaw(currentRaw + 1)} />}
+        {!isHidden && <ShowMoreButton onClick={handleShowMoreClick} />}
       </>
   );
 };
 
 MoviesList.propTypes = {
-  movies: PropTypes.array
+  movies: PropTypes.array,
+  genre: PropTypes.string,
 };
 
 export default connect(
     (state) => ({
-      movies: getMovies(state)
+      movies: getMovies(state),
+      genre: getGenre(state),
     })
 )(MoviesList);

@@ -2,6 +2,7 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducers/index.js';
+import { Link } from 'react-router-dom';
 
 export class GenreItem extends PureComponent {
   handleClickGenre = (e) => {
@@ -15,12 +16,12 @@ export class GenreItem extends PureComponent {
     const type = isActive ? `active` : ``;
     return (
       <li className={`catalog__genres-item catalog__genres-item--${type}`}>
-        <a
-          href="#"
+        <Link
+          to={`/`}
           className="catalog__genres-link"
           id={genre}
           onClick={this.handleClickGenre}
-        >{genre}</a>
+        >{genre}</Link>
       </li>
     );
   }
