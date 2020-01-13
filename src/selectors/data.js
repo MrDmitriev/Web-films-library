@@ -1,13 +1,15 @@
 import {createSelector} from 'reselect';
-import { includes, find, propEq } from 'ramda';
+import {includes, find, propEq} from 'ramda';
+import {getMovieId} from './settings.js';
 
 export const getMovies = (state) => state.data.movies;
 export const getMoviePromo = (state) => state.data.moviePromo;
 export const getIsfetching = (state) => state.data.isFetching;
+export const getReviews = (state) => state.data.reviews;
 
 export const getMovie = createSelector(
     getMovies,
-    (state, id) => id,
+    getMovieId,
     (movies, id) => {
       return find(propEq(`id`, Number(id)), movies);
     }

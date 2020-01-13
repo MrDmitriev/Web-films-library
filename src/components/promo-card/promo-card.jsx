@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {getMoviePromo} from '../../selectors/data.js';
 import {Logo} from '../logo/logo.jsx';
+import Login from '../login/login.jsx';
 
 export class PromoCard extends PureComponent {
   render() {
@@ -20,11 +21,7 @@ export class PromoCard extends PureComponent {
         <header className="page-header movie-card__head">
           <Logo />
 
-          <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-            </div>
-          </div>
+          <Login />
         </header>
 
         <div className="movie-card__wrap">
